@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <link rel="icon" type="image/png" href="Images/SHUBHAM LOGO.PNG"/>
+<style>
+    #infobutton{
+        border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+    }
+
+
+</style>
+
+</head>
+<body>
+    <%- include('common/navbar') %>
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+         
+      
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="card mb-4">
+                <div class="card-body text-center">
+                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
+                    class="rounded-circle img-fluid" style="width: 150px;">
+                  <h5 class="my-3"><%= dbuname.fullname %></h5>
+            
+                </div>
+              </div>
+              <div class="card mb-4 mb-lg-0">
+                <div class="card-body p-0">
+                  <!-- md bootstap link design-->
+                <center>
+                    <br>
+                    <button class="btn info w-100" id="infobutton"><a href="/"> Logout </a></button>
+                    <br>
+                    <br>
+                    <button class="btn info w-100" id="infobutton"><a href="https://rural.gov.in/en/scheme-websites" target="_blank"> Click Here To View Government Schemes </a></button>
+                    <br>
+                    <br>
+                    <button class="btn info w-100" id="infobutton"><a href="https://scholarships.gov.in/" target="_blank"> Click Here To Apply For Education Scholerships </a></button>
+                    <br>
+                    <br>
+                    <button class="btn info w-100" id="infobutton"><a href="https://bhulekh.mahabhumi.gov.in/" target="_blank"> Click Here To View 7/12  8A</a></button>
+                    <br>
+                    <br>
+                </center>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Aadhar Number</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= dbuname.aadharnumber %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Mobile Number</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= dbuname.mobilenumber %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Ward Number</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= dbuname.wardnumber %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Age</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= dbuname.age %></p>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-3">
+                      <p class="mb-0">Education</p>
+                    </div>
+                    <div class="col-sm-9">
+                      <p class="text-muted mb-0"><%= dbuname.education %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body">
+                        
+                           
+                        
+                            <center>
+                                <h2 style="font-family: 'Times New Roman', Times, serif;color: dimgrey;"> Apply For services </h2>
+
+                                <br>
+                        <form action="/submit_request/<%= dbuname.fullname %>/<%= dbuname.mobilenumber %>" method="post">      
+                        <select class="form-select form-select-lg mb-3 w-100 p-3" aria-label=".form-select-lg example" id="drop" style="background-color:aliceblue;" name="appliedservice" required>
+          
+                            <option selected>Click Here To Apply Services</option>
+                            <option value="Birth Certificate"> Birth Certificate</option>
+                            <option value="Death Certificate"> Death Certificate</option>
+                            <option value="Resident Certifacte"> Resident Certifacte</option>
+                            <option value="Ghar Patti"> Ghar Patti</option>
+                            <option value="Pani Patti"> Pani Patti</option>
+                      
+                          </select>
+                
+                          <div class="form-group">
+                            <label for="requestdetails">Write Details About Your Request </label>
+                            <textarea class="form-control" rows="4" id="requestdetails" name="requestdetails" required></textarea>
+                          </div>
+                          <br>
+                          <input type="submit" class="btn btn-primary" onclick="successrequest()" />
+            
+                          </center>
+                        </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="card mb-4 mb-md-0">
+                    <div class="card-body">
+                        <form action="/submit_complaint/<%= dbuname.fullname %>" method="post">
+                            <center>
+                                <h2 style="font-family: 'Times New Roman', Times, serif;color: dimgrey;"> Make Complaints </h2>
+                                <p class="mb-4"><span class="text-primary font-italic me-1">complaint will send to your ward officer and sarpanch </p>
+                        
+                                <div class="form-group">
+                                    <label for="complaint">Write complaint in detail here </label>
+                                    <textarea class="form-control" rows="5" id="complaint" name="complaint" required></textarea>
+                                  </div>
+                                  <br>
+                                  <input type="submit" class="btn btn-primary" onclick="submitcomplaint()" />
+                                </center>
+                                </form>
+                     
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Request Status-->
+      <div class="height-100 bg-light" id="complainttable">
+        <br>
+        <center>
+        <h1 style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;"> Request Status  </h1>
+        </center>
+        <br>
+        <table class="table table-bordered">
+            <thead style="text-align: center;">
+                <tr>
+                    <th>Request </th>
+                    <th>Request Details</th>
+                    <th> Request Status </th>
+                    
+                </tr>
+            </thead>
+            <% request.forEach((item)=> {%>
+                <tbody style="text-align: center;">
+                    <tr>
+
+                        <td>
+                            <%= item.request %>
+                        </td>
+                        <td>
+                            <%= item.details %>
+                        </td>
+                        <td>
+                          <%= item.status %>
+                      </td>
+
+                        <% })%>
+
+                    </tr>
+                </tbody>
+        </table>
+
+    </div>
+    <br>
+    <br>
+    <hr>
+      <!-- Complaint Status-->
+      <div class="height-100 bg-light" id="complainttable">
+        <br>
+        <center>
+        <h1 style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;"> Complaints Status  </h1>
+        </center>
+        <br>
+        <table class="table table-bordered">
+            <thead style="text-align: center;">
+                <tr>
+                    <th>Complaint </th>
+                    
+                    <th> Complaint Status </th>
+                    
+                </tr>
+            </thead>
+            <% complaint.forEach((item)=> {%>
+                <tbody style="text-align: center;">
+                    <tr>
+
+                        <td>
+                            <%= item.complaint %>
+                        </td>
+                        <td>
+                            <%= item.status %>
+                        </td>
+
+                        <% })%>
+
+                    </tr>
+                </tbody>
+        </table>
+
+    </div>
+
+      
+      <%- include('common/footer') %>
+
+ <script>
+  function successrequest()
+  {
+    const data=document.getElementById('drop')
+    const inputvalue=data.value.trim()
+
+    if(inputvalue.length==0)
+    {
+      alert("Select Request Before Submitting !!");
+    }
+    else{
+
+      alert("Request Submitted Succesfully!");
+    }
+  }
+    
+    function submitcomplaint()
+    {
+      const data=document.getElementById('complaint')
+      const inputvalue=data.value.trim()
+      if(inputvalue.length==0)
+    {
+     
+      alert(" Type Something Before Submitting Complaint");
+    }
+    else{
+      alert(" Complaint Registered Successfully ");
+    }
+    }
+
+  
+  
+ </script>
+</body>
+</html>

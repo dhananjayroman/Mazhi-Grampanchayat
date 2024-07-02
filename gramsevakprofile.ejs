@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramsevak</title>
+    <link rel="icon" type="image/png" href="Images/SHUBHAM LOGO.PNG" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css');
+        @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js');
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js');
+        @import url('https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css');
+
+
+        @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+        :root {
+            --header-height: 3rem;
+            --nav-width: 68px;
+            --first-color: #4723D9;
+            --first-color-light: #AFA5D9;
+            --white-color: #F7F6FB;
+            --body-font: 'Nunito', sans-serif;
+            --normal-font-size: 1rem;
+            --z-fixed: 100
+        }
+
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box
+        }
+
+        body {
+            position: relative;
+            margin: var(--header-height) 0 0 0;
+            padding: 0 1rem;
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            transition: .5s
+        }
+
+        a {
+            text-decoration: none
+        }
+
+        .header {
+            width: 100%;
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+            background-color: var(--white-color);
+            z-index: var(--z-fixed);
+            transition: .5s
+        }
+
+        .header_toggle {
+            color: var(--first-color);
+            font-size: 1.5rem;
+            cursor: pointer
+        }
+
+        .header_img {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            border-radius: 50%;
+            overflow: hidden
+        }
+
+        .header_img img {
+            width: 40px
+        }
+
+        .l-navbar {
+            position: fixed;
+            top: 0;
+            left: -30%;
+            width: var(--nav-width);
+            height: 100vh;
+            background-color: var(--first-color);
+            padding: .5rem 1rem 0 0;
+            transition: .5s;
+            z-index: var(--z-fixed)
+        }
+
+        .nav {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden
+        }
+
+        .nav_logo,
+        .nav_link {
+            display: grid;
+            grid-template-columns: max-content max-content;
+            align-items: center;
+            column-gap: 1rem;
+            padding: .5rem 0 .5rem 1.5rem
+        }
+
+        .nav_logo {
+            margin-bottom: 2rem
+        }
+
+        .nav_logo-icon {
+            font-size: 1.25rem;
+            color: var(--white-color)
+        }
+
+        .nav_logo-name {
+            color: var(--white-color);
+            font-weight: 700
+        }
+
+        .nav_link {
+            position: relative;
+            color: var(--first-color-light);
+            margin-bottom: 1.5rem;
+            transition: .3s
+        }
+
+        .nav_link:hover {
+            color: var(--white-color)
+        }
+
+        .nav_icon {
+            font-size: 1.25rem
+        }
+
+        .show {
+            left: 0
+        }
+
+        .body-pd {
+            padding-left: calc(var(--nav-width) + 1rem)
+        }
+
+        .active {
+            color: var(--white-color)
+        }
+
+        .active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 2px;
+            height: 32px;
+            background-color: var(--white-color)
+        }
+
+        .height-100 {
+            height: 100vh
+        }
+
+        @media screen and (min-width: 768px) {
+            body {
+                margin: calc(var(--header-height) + 1rem) 0 0 0;
+                padding-left: calc(var(--nav-width) + 2rem)
+            }
+
+            .header {
+                height: calc(var(--header-height) + 1rem);
+                padding: 0 2rem 0 calc(var(--nav-width) + 2rem)
+            }
+
+            .header_img {
+                width: 40px;
+                height: 40px
+            }
+
+            .header_img img {
+                width: 45px
+            }
+
+            .l-navbar {
+                left: 0;
+                padding: 1rem 1rem 0 0
+            }
+
+            .show {
+                width: calc(var(--nav-width) + 156px)
+            }
+
+            .body-pd {
+                padding-left: calc(var(--nav-width) + 188px)
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <body id="body-pd">
+        <header class="header" id="header">
+
+
+            <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+            <div class="title">
+                <h2 style="font-family:sans-serif;"> Welcome..! Gramsevak</h2>
+            </div>
+            <div class="header_img"> <img src="/public/Images/profile.png" alt=""> </div>
+        </header>
+        <div class="l-navbar" id="nav-bar">
+            <nav class="nav">
+                <div> <a href="#" class="nav_logo"> <i class='bx bx-layer nav_logo-icon'></i> <span
+                            class="nav_logo-name">Majhi Grampanchayat</span> </a>
+                    <div class="nav_list">  <a href="#requesttable" class="nav_link"> <i
+                                class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">View
+                                Requests</span> </a> <a href="#Birthform" class="nav_link"> <i
+                                class='bx bx-user nav_icon'></i> <span class="nav_name">Add Born</span> </a>
+                        <a href="#deathform" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span
+                                class="nav_name">Add Death</span> </a>
+                                <a href="#birthrecords" class="nav_link"> <i
+                                    class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">View
+                                    Birth Records</span> </a> 
+                                    <a href="#deathrecords" class="nav_link"> <i
+                                        class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">View Death Records</span> </a> 
+                    </div>
+                </div> <a href="/" class="nav_link"> <i class='bx bx-log-out nav_icon'></i> <span
+                        class="nav_name">SignOut</span> </a>
+            </nav>
+        </div>
+        <!--Container Main start-->
+        <!-- request table starts here-->
+        <div class="height-100 bg-light" id="requesttable">
+            <br>
+            <center>
+            <h1 style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;"> Requests </h1>
+            </center>
+            <br>
+            <table class="table table-bordered">
+                <thead style="text-align: center;">
+                    <tr>
+                        <th>Request </th>
+                        <th>Requester Name</th>
+                        <th>Mobile Number</th>
+                        <th>Remark</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <% request.forEach((item)=> {%>
+                    <tbody style="text-align: center;">
+                        <tr>
+
+                            <td>
+                                <%= item.request %>
+                            </td>
+                            <td>
+                                <%= item.requestername %>
+                            </td>
+                            <td>
+                                <%= item.mobilenumber %>
+                            </td>
+                            <td>
+                                <%=item.details%>
+                            </td>
+                            <td><a class="btn btn-primary" href="/underprocess/<%= item.id %>" role="button" onclick="processalert()">Mark As
+                                    Under Process</a></td>
+                            <td><a class="btn btn-primary" href="/complete/<%= item.id %>" role="button" onclick="completealert()" >Mark As
+                                    Complete</a></td>
+                            <td><a class="btn btn-primary" href="/delete/<%= item.id %>" role="button">Delete</a></td>
+                            <% })%>
+
+                        </tr>
+                    </tbody>
+            </table>
+
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        <!-- request table ends here-->
+
+        <!-- Birth Form statrt here-->
+
+        <div class="container" id='Birthform'>
+            <div class="bg-light py-3 py-md-5">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+                            <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="text-center mb-5">
+
+                                            <h1
+                                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: cadetblue;">
+                                                Add Birth Details </h1>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <form action="/birthrecord" method="post">
+                                    <div class="row gy-3 gy-md-4 overflow-hidden">
+                                        <div class="col-12">
+                                            <label for="bornname" class="form-label">New Born Child Name<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-person-vcard"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5" />
+                                                        <path
+                                                            d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" class="form-control" name="bornname" id="bornname"
+                                                    required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="birthdate" class="form-label">Date Of Birth <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-calendar-date"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M6.445 11.688V6.354h-.633A13 13 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23" />
+                                                        <path
+                                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="date" class="form-control" name="birthdate" id="birthdate"
+                                                    required>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-12">
+                                            <label for="birthlocation" class="form-label">Location <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-in-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" class="form-control" name="birthlocation"
+                                                    id="birthlocation" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="gender" class="form-label">Gender <span
+                                                    class="text-danger">*</span></label>
+                                            <select required class="form-select" aria-label="Default select example"
+                                                name="birthgender" id="gender">
+                                                <option selected>Select Gender</option>
+                                                <option value="Boy">Boy</option>
+                                                <option value="Girl">Girl</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="wardno" class="form-label">Ward Number <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-house-door"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="number" class="form-control" name="wardno" id="wardno"
+                                                    required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="parentname" class="form-label">Parent Full Name<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-person-vcard"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5" />
+                                                        <path
+                                                            d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" class="form-control" name="parentname"
+                                                    id="parentname" required>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <button class="btn btn-primary btn-lg" type="submit" onclick="birthrecord()">Add Record
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Birth form ends here-->
+        <!-- death form starts here -->
+
+
+        <div class="container" id='deathform'>
+            <div class="bg-light py-3 py-md-5">
+                <div class="container">
+                    <div class="row justify-content-md-center">
+                        <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+                            <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="text-center mb-5">
+                                            <h1
+                                                style="font-family: Georgia, 'Times New Roman', Times, serif; color: cadetblue;">
+                                                Add Death Record </h1>
+                                        </div>
+                                    </div>
+                                </div>
+                                <form action="/deathrecord" method="post">
+                                    <div class="row gy-3 gy-md-4 overflow-hidden">
+                                        <div class="col-12">
+                                            <label for="Deathname" class="form-label">Dead Person Name<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-person-vcard"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5" />
+                                                        <path
+                                                            d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96c.026-.163.04-.33.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1.006 1.006 0 0 1 1 12z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" class="form-control" name="deadname" id="deadname"
+                                                    required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="deathdate" class="form-label">Date Of Death <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-calendar-date"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M6.445 11.688V6.354h-.633A13 13 0 0 0 4.5 7.16v.695c.375-.257.969-.62 1.258-.777h.012v4.61zm1.188-1.305c.047.64.594 1.406 1.703 1.406 1.258 0 2-1.066 2-2.871 0-1.934-.781-2.668-1.953-2.668-.926 0-1.797.672-1.797 1.809 0 1.16.824 1.77 1.676 1.77.746 0 1.23-.376 1.383-.79h.027c-.004 1.316-.461 2.164-1.305 2.164-.664 0-1.008-.45-1.05-.82zm2.953-2.317c0 .696-.559 1.18-1.184 1.18-.601 0-1.144-.383-1.144-1.2 0-.823.582-1.21 1.168-1.21.633 0 1.16.398 1.16 1.23" />
+                                                        <path
+                                                            d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="date" class="form-control" name="deathdate" id="deathdate"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="age" class="form-label">Age <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="number" class="form-control" name="age" id="age" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="location" class="form-label">Death Location <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-in-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="text" class="form-control" name="deathlocation"
+                                                    id="deathocation" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="gender" class="form-label">Gender <span
+                                                    class="text-danger">*</span></label>
+                                            <select required class="form-select" aria-label="Default select example"
+                                                name="deathgender" id="gender">
+                                                <option selected>Select Gender</option>
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="wardno" class="form-label">Ward Number <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-house-door"
+                                                        viewBox="0 0 16 16">
+                                                        <path
+                                                            d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z" />
+                                                    </svg>
+                                                </span>
+                                                <input type="number" class="form-control" name="deathwardno"
+                                                    id="deathwardno" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="Dreason" class="form-label">Reason Of Death<span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-box-arrow-in-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z" />
+                                                        <path fill-rule="evenodd"
+                                                            d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                                                    </svg>
+                                                </span>
+                                                </span>
+                                                <input type="textarea" class="form-control" name="reason" id="reason">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="d-grid">
+                                                <button class="btn btn-primary btn-lg" type="submit" onclick="deathrecord()">Add Record </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- death form end here-->
+
+        <!-- Birth records starts here-->
+        <div class="height-100 bg-light" id="birthrecords">
+            <br>
+            <br>
+            <center>
+            <h1 style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;"> Birth Records</h2>
+            </center>
+            <table class="table table-bordered">
+        
+                <thead style="text-align: center;">
+                    <tr>
+                        <th> Child Name</th>
+                        <th> Gender </th>
+                        <th>Birth Date</th>
+                        <th>Location</th>
+                        <th> Parent Name</th>
+                    </tr>
+                </thead>
+                <% birthrecords.forEach((item)=> {%>
+                    <tbody style="text-align: center;">
+                        <tr class="table-primary">
+
+                            <td>
+                                <%= item.name %>
+                            </td>
+                            <td>
+                                <%= item.gender %>
+                            </td>
+                            <td>
+                                <%= item.date%>
+                            </td>
+                            <td>
+                                <%=item.location%>
+                            </td>
+                            <td>
+                                <%=item.parentname%>
+                            </td>
+
+                        </tr>
+                        <%}) %>
+                    </tbody>
+            </table>
+
+        </div>
+
+        <!-- Birth records ends here-->
+
+        <!-- Death record starts here-->
+
+        <div class="height-100 bg-light" id="deathrecords">
+            <br>
+            <br>
+            <center>
+            <h1 style="font-family: 'Times New Roman', Times, serif; font-weight: bolder;"> Death Records</h2>
+            </center>
+            <table class="table table-bordered">
+        
+                <thead style="text-align: center;">
+                    <tr>
+                        <th> Dead Person Name</th>
+                        <th> Gender </th>
+                        <th> Age </th>
+                        <th>Death Date</th>
+                        <th>Location</th>
+                        <th> Reason</th>
+                    </tr>
+                </thead>
+                <% deathrecords.forEach((item)=> {%>
+                    <tbody style="text-align: center;">
+                        <tr class="table-primary">
+
+                            <td>
+                                <%= item.name %>
+                            </td>
+                            <td>
+                                <%= item.gender %>
+                            </td>
+                            <td>
+                                <%= item.age %>
+                            </td>
+                            <td>
+                                <%= item.date%>
+                            </td>
+                            <td>
+                                <%=item.location%>
+                            </td>
+                            <td>
+                                <%=item.reason%>
+                            </td>
+
+                        </tr>
+                        <%}) %>
+                    </tbody>
+            </table>
+
+        </div>
+        
+        <!-- Death record ends here-->
+        <!--Container Main end-->
+
+        <script>
+            
+            function processalert()
+            {
+                alert(" Request Status is set to the Under Process ");
+            }
+            function completealert()
+            {
+                alert(" Request Status is set to the Completed ");
+            }
+
+            function birthrecord()
+            {
+                alert(" Birth Record Added Succesfully ..! ");
+            }
+            function deathrecord()
+            {
+                alert(" Deaath Record Added Succesfully ..! ");s
+            }
+
+            function complete()
+            {
+                var button=getElementById('completebutton')
+                button.innerText='completed'
+            }
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function (event) {
+
+                const showNavbar = (toggleId, navId, bodyId, headerId) => {
+                    const toggle = document.getElementById(toggleId),
+                        nav = document.getElementById(navId),
+                        bodypd = document.getElementById(bodyId),
+                        headerpd = document.getElementById(headerId)
+
+                    // Validate that all variables exist
+                    if (toggle && nav && bodypd && headerpd) {
+                        toggle.addEventListener('click', () => {
+                            // show navbar
+                            nav.classList.toggle('show')
+                            // change icon
+                            toggle.classList.toggle('bx-x')
+                            // add padding to body
+                            bodypd.classList.toggle('body-pd')
+                            // add padding to header
+                            headerpd.classList.toggle('body-pd')
+                        })
+                    }
+                }
+
+                showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header')
+
+                /*===== LINK ACTIVE =====*/
+                const linkColor = document.querySelectorAll('.nav_link')
+
+                function colorLink() {
+                    if (linkColor) {
+                        linkColor.forEach(l => l.classList.remove('active'))
+                        this.classList.add('active')
+                    }
+                }
+                linkColor.forEach(l => l.addEventListener('click', colorLink))
+
+                // Your code to run since DOM is loaded and ready
+            });
+        </script>
+
+       
+    </body>
+
+</html>
