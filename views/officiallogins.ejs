@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Login </title>
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" type="image/png" href="Images/SHUBHAM LOGO.PNG"/>
+    <style>
+        .divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
+}
+    </style>
+</head>
+<body>
+    <%- include('common/navbar') %>
+    <section class="vh-100">
+        <div class="container-fluid h-custom">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+              <form action="/officialloginchecking" method="post">
+                <center>
+                <span class="login100-form-title">
+                    <img src="Images/SHUBHAM LOGO.png" class="img-fluid w-50 " alt="Responsive image">
+                    <br>
+                  <br>
+                  <h2  class="font-weight-bold" style="font-family:Georgia, 'Times New Roman', Times, serif"> Official Login </h2>
+                  </span>
+                  
+                  <br> 
+
+                </center>
+               
+      
+                <!-- Email input -->
+                <div class="form-outline mb-4">
+                  <input type="text" id="logininput" class="form-control form-control-lg" name="uname"
+                    placeholder="Enter Login Id"  oninput="loginidvalidation()"/>
+                    <div class="wrap-input100 validate-input" id="loginwriter" style="color:red"> </div>
+                  
+                </div>
+      
+                <!-- Password input -->
+                <div class="form-outline mb-3">
+                  <input type="password" id="passwordinput" class="form-control form-control-lg" name="password"
+                    placeholder="Enter password" oninput="passwordvalidation()"/>
+                    <div class="wrap-input100 validate-input" id="passwordwriter" style="color:red"> </div>
+                  
+                </div>
+      
+              
+      
+                <div class="text-center text-lg-start mt-4 pt-2">
+                  <button type="submit" class="btn btn-primary btn-lg"
+                    style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                  
+                </div>
+      
+              </form>
+            </div>
+          </div>
+        </div>
+       
+      </section>
+      <%- include('common/footer') %>
+
+      <script>
+
+        function loginidvalidation()
+        {
+        const input=document.getElementById('logininput')
+        const inputvalue=input.value.trim()
+        const writer=document.getElementById('loginwriter')
+            
+        if(inputvalue.length==0)
+        {
+            writer.textContent='Please enter something'
+        } else if(inputvalue.length<5)
+        {
+            writer.textContent='Enter atleast 5 characters'
+        }
+        else{
+            writer.textContent=''
+        }
+    }
+    
+    function passwordvalidation()
+    {
+      const input=document.getElementById('passwordinput')
+        const inputvalue=input.value.trim()
+        const writer=document.getElementById('passwordwriter')
+            
+        if(inputvalue.length==0)
+        {
+            writer.textContent='password cannot be blank '
+        } else if(inputvalue.length<5)
+        {
+            writer.textContent='Enter atleast 5 characters'
+        }
+        else{
+            writer.textContent=''
+        }
+    
+    }
+    </script>
+</body>
+</html>
